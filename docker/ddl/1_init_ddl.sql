@@ -74,3 +74,64 @@ CREATE TABLE IF NOT EXISTS _history_action (
   `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
   `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="history action";
+
+/*
+    user table
+*/
+DROP TABLE IF EXISTS _user;
+CREATE TABLE IF NOT EXISTS _user (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `sign_type` VARCHAR(255) NOT NULL COMMENT 'sign type',
+  `account` VARCHAR(255) UNIQUE NOT NULL COMMENT 'account',
+  `password` VARCHAR(255) NOT NULL COMMENT 'password',
+  `name` VARCHAR(255) NOT NULL COMMENT 'username',
+  `gender` VARCHAR(255) NOT NULL COMMENT 'gender',
+  `birth` VARCHAR(255) NOT NULL COMMENT 'birth',
+  `profile_image` VARCHAR(255) DEFAULT NULL COMMENT 'profile image',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="user";
+
+/*
+    chat table
+*/
+DROP TABLE IF EXISTS _chat;
+CREATE TABLE IF NOT EXISTS _chat (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` VARCHAR(255) NOT NULL COMMENT 'user id',
+  `to_user_id` VARCHAR(255) NOT NULL COMMENT 'to user id',
+  `type` VARCHAR(255) NOT NULL COMMENT 'type',
+  `message` VARCHAR(255) NOT NULL COMMENT 'message',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="chat";
+
+/*
+    chat room table
+*/
+DROP TABLE IF EXISTS _chat_room;
+CREATE TABLE IF NOT EXISTS _chat_room (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `first_user_id` VARCHAR(255) NOT NULL COMMENT 'first user id',
+  `second_user_id` VARCHAR(255) NOT NULL COMMENT 'second user id',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="chat";
+
+/*
+    matching table
+*/
+DROP TABLE IF EXISTS _matching;
+CREATE TABLE IF NOT EXISTS _matching (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `host_id` VARCHAR(255) NOT NULL COMMENT 'first user id',
+  `guest_id` VARCHAR(255) NOT NULL COMMENT 'second user id',
+  `host_accept` VARCHAR(255) DEFAULT NULL COMMENT 'first user id',
+  `guest_accept` VARCHAR(255) DEFAULT NULL COMMENT 'second user id',
+  `created_at` DATETIME DEFAULT now() COMMENT 'create time',
+  `updated_at` DATETIME DEFAULT NULL COMMENT 'update time',
+  `deleted_at` DATETIME DEFAULT NULL COMMENT 'delete time'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT="chat";

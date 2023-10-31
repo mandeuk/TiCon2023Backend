@@ -1,0 +1,16 @@
+{
+  "files.eol": "\n",
+  // enable globally (here: format on save)
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    "**/yarn.lock": true,
+    "**/.gitignore": true
+  },
+  // "eslint.nodePath": "backend/.yarn/sdks",
+  // "prettier.prettierPath": "backend/.yarn/sdks/prettier/index.js",
+  "typescript.tsdk": "backend/.yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

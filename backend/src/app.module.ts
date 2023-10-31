@@ -9,6 +9,7 @@ import { GlobalDatabaseModule } from './common/global/database.module'
 import { GlobalHttpModule } from './common/global/http.module'
 import configuration from './configuration/configuration'
 import { ActionModule } from './api/action/action.module'
+import { AuthModule } from './api/auth/auth.module'
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { ActionModule } from './api/action/action.module'
     GlobalModule,
     ImageModule,
     DashboardModule,
-    ActionModule
+    ActionModule,
+    AuthModule
   ]
 })
 export class AppModule {}
