@@ -50,6 +50,7 @@ import { GetUserDto } from './dto/get-user.dto'
         @Session() session: any,
         @Query() dto: GetUserDto
     ) {
+      dto.id = session.userId
       const result = await this.authService.getUser(dto)
       res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,

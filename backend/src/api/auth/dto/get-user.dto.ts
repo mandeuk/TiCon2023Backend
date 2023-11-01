@@ -6,5 +6,5 @@ export class GetUserDto {
     example: 'sample1',
     required: false
   })
-  parameter1: string | null
+  id: string | null
 }

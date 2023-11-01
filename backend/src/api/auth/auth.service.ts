@@ -25,23 +25,39 @@ export class AuthService {
 
   // ANCHOR get user
   async getUser(dto: GetUserDto): Promise<CommonResult> {
+    let message = null
+    let data = null
+
     await this.datasource.transaction(async (transactionalEntityManager) => {
       try {
+        if (!dto.id){
+          throw new HttpException('No session', HttpStatus.UNAUTHORIZED)
+        }
+
         // TODO 코드를 작성하십시오.
-        // const entity = await transactionalEntityManager
-        //   .getRepository(Entity)
-        // if ("validation false") {
-        //   throw new HttpException('message', HttpStatus.BAD_REQUEST)
-        // }
-        // await transactionalEntityManager.getRepository(Entity).save(entity)
+        const user = await transactionalEntityManager
+          .getRepository(User)
+          .findOne({
+            where: {
+              id: parseInt(dto.id ?? "0"),
+              deletedAt: IsNull()
+            }
+          })
+        if (!user) {
+          throw new HttpException('Not registered account', HttpStatus.FORBIDDEN)
+        }
+
+        // Return
+        message = '유저 정보 불러오기 성공'
+        data = user
       } catch (error) {
         throw new HttpException(error.message, error.status)
       }
     })
 
     return {
-      message: '',
-      data: null
+      message: message,
+      data: data
     }
   }
 
